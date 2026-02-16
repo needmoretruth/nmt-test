@@ -1,21 +1,16 @@
 import random
 import time
 
-ran = 0
-num = random.randint(0, 1000000)
-a = 0
-b = 0
-c = 0
+current_guess = 0
+target_number = random.randint(1, 1000000)
+count = 0
+current_round = 0
+total_attempts = 0
 total = 0
-totall = 0
+average_time = 0
 bb = 0
-cc = 0
+avg_attempts = 0
 choice = 0
-
-if num == 0:
-    print("wow 0.000001 chance! num is zero!")
-    print("but num is need change")
-    num = random.randint(1, 1000000)
 
 
 def menu():
@@ -43,19 +38,19 @@ def menu():
 
 
 def rt():
-    global a, b, c, ran, num, total
+    global count, current_guess, total_attempts, target_number, total
     start_time = time.perf_counter()
-    ran = 0
+    current_guess = 0
 
-    while ran != num:
-        ran = random.randint(0, 1000000)
-        a += 1
+    while current_guess != target_number:
+        current_guess = random.randint(1, 1000000)
+        count += 1
     end_time = time.perf_counter()
     execution_time = end_time - start_time
-    print(f"time: {execution_time:}s, {a}")
+    print(f"time: {execution_time:}s, {count}")
     total += execution_time
-    c += a
-    a = 0
+    total_attempts += count
+    count = 0
 
 
 def ex():
@@ -65,24 +60,27 @@ def ex():
 
 def debug():
     print("this is debug mode")
-    print(f"num: {num}")
+    print(f"target number: {target_number}")
     input("press enter to continue")
     menu()
 
 
 def run():
-    global b, total, c, totall, cc
-    answer = int(input("how many: "))
-    if answer == 0:
+    global current_round, total, total_attempts, average_time, avg_attempts
+    current_round = 0
+    total = 0
+    total_attempts = 0
+    total_rounds = int(input("how many: "))
+    if total_rounds == 0:
         print("no")
         exit()
-    while b != answer:
+    while current_round != total_rounds:
         rt()
-        b += 1
-    totall = total / answer
-    cc = c / answer
-    print(f"total time: {total}s, {c}")
-    print(f"average time: {totall}s, {cc}")
+        current_round += 1
+    average_time = total / total_rounds
+    avg_attempts = total_attempts / total_rounds
+    print(f"total time: {total}s, {total_attempts}")
+    print(f"average time: {average_time}s, {avg_attempts}")
     input("press enter to continue")
     menu()
 
