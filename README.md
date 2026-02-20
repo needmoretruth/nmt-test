@@ -1,4 +1,5 @@
-this is random number generator and timer
+![Status](https://img.shields.io/badge/Status-WIP-orange)
+this is testing program but this project is Work In Progress
 
 
-version 0.0.1
+version 0.0.2
