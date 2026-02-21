@@ -1,4 +1,5 @@
 import os
+import random
 import sys
 import time
 
@@ -57,7 +58,7 @@ def run():
     while True:
         print("\n--- run menu ---")
         print(" 1. random generation")
-        print(" 2. sum")
+        print(" 2. sum_loop")
         print(" 3. odd even")
         print(" 4. power")
         print(" 5. back")
@@ -65,9 +66,9 @@ def run():
         choice = input("select run option >> ").strip()
 
         if choice == "1":
-            print("comming soon")
+            random_generation()
         elif choice == "2":
-            print("comming soon")
+            sum_loop()
         elif choice == "3":
             print("comming soon")
         elif choice == "4":
@@ -76,6 +77,47 @@ def run():
             break
         else:
             print("wrong choice")
+
+
+def random_generation():
+    a = 0
+    count = 0
+    max_num = int(input("max number: "))
+    if max_num <= 0:
+        print("max number need bigger than 0")
+        return
+    answer = int(input("how many times: "))
+    if answer <= 0:
+        print("answer need bigger than 0")
+        return
+    start_time = time.time()
+    while answer > a:
+        random_num = random.randint(1, max_num)
+        count += 1
+        if random_num == 1:
+            a += 1
+    end_time = time.time()
+    run_time = end_time - start_time
+    print(f"run time: {run_time:.8f} seconds")
+    run_time = run_time / answer
+    print(f"average time: {run_time:.8f} seconds")
+    print(f"count: {count}")
+    count = count / answer
+    print(f"average count: {count:.8f}")
+
+
+def sum_loop():
+    a = 0
+    max_num = int(input("max number: "))
+    if max_num <= 0:
+        print("max number need bigger than 0")
+        return
+    start_time = time.time()
+    while max_num > a:
+        a += 1
+    end_time = time.time()
+    run_time = end_time - start_time
+    print(f"run time: {run_time:.8f} seconds")
 
 
 def setting():
@@ -90,5 +132,5 @@ def debug():
 
 if __name__ == "__main__":
     print("welcome to nmt-test")
-    time.sleep(1)
+    time.sleep(0.5)
     menu()
