@@ -160,6 +160,7 @@ def hash_mine():
     nonce = nonce / run_time
     print("average count per second: ", nonce)
     print(f"hash result: {hash_result}")
+    # i think this is wrong but i don't know how to fix it and why it is wrong and i need fix it
 
 
 def setting():
