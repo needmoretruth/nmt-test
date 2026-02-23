@@ -148,11 +148,14 @@ def hash_mine():
         print("press Ctrl+C to stop")
         time.sleep(2)
     nonce = 0
-    hash_result = hashlib.sha256(str(nonce).encode()).hexdigest()
+    data = os.urandom(16).hex()
+    block = data + str(nonce)
+    hash_result = hashlib.sha256(block.encode()).hexdigest()
     start_time = time.time()
     while hash_result[:difficulty] != "0" * difficulty:
         nonce += 1
-        hash_result = hashlib.sha256(str(nonce).encode()).hexdigest()
+        block = data + str(nonce)
+        hash_result = hashlib.sha256(block.encode()).hexdigest()
     end_time = time.time()
     run_time = end_time - start_time
     print(f"run time: {run_time:.8f} seconds")
@@ -160,7 +163,8 @@ def hash_mine():
     nonce = nonce / run_time
     print("average count per second: ", nonce)
     print(f"hash result: {hash_result}")
-    # i think this is wrong but i don't know how to fix it and why it is wrong and i need fix it
+    print(f"data: {data}")
+    print(f"block: {block}")
 
 
 def setting():
@@ -175,5 +179,7 @@ def debug():
 
 if __name__ == "__main__":
     print("welcome to nmt-test")
+    data = str(time.time())
+    print(data)
     time.sleep(0.5)
     menu()
